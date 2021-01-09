@@ -1,0 +1,29 @@
+body{
+
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #56bda2;
+    color: #0B0E29;
+    padding: 100px;
+    text-align: center;
+}
+.materialize-textarea{
+    color: #0B0E29;
+}
+
+#textarea1{
+   
+    background-color:#DBB23B;
+    border: 1px solid white;
+    border-radius: 5px;
+    width: 280px;
+    text-align: center;
+}
+#textarea1::placeholder{
+    color: #0B0E29;
+}
+
+#searchBtn{
+    
+    color: #DBB23B;
+    background-color: #0B0E29;
+}
