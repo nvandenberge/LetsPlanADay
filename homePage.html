@@ -1,17 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<style>
-<link rel="stylesheet" href="mystyle.css">
-body {background-color: powderblue;}
-h1   {color: blue;}
-p    {color: red;}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <title>Let's Plan a Day!</title>
 </head>
+
 <body>
+    <div class="container">
+    <h1>Let's Plan a Day!</h1>
+    <div class="row">
+        <form class="col s12">
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea id="textarea1" class="materialize-textarea" placeholder="Enter Zip Code"></textarea>
+                     </div>
+                     <button class="btn waves-effect waves-light" type="submit" name="action" id="searchBtn">Let's Go!
+                        <i class="material-icons right">perm_contact_calendar
+                            
+                            </i>
+                      </button>
+            </div>
+        </form>
+    </div>
 
-<h1>Let's Plan a Day!</h1>
-<p>This is a paragraph.</p>
-
+</div>
 </body>
+
 </html>
