@@ -31,7 +31,8 @@ body{
     border: 1px solid white;
     color: white;
     border-radius: 10px;
-    width: 30%;
+    margin: 5px;
+    width: inherit;
 }
 
 #food{
