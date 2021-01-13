@@ -26,3 +26,24 @@ body{
     color: #DBB23B;
     background-color: #0B0E29;
 }
+
+.boxes{
+    border: 1px solid white;
+    color: white;
+    border-radius: 10px;
+    width: 30%;
+    
+}
+
+#food{
+    background-color: #DBB23B;
+}
+
+#event{
+    background-color: #2492A1;
+}
+
+#play{
+    background-color: #0B0E29;
+}
+
