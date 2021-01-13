@@ -31,8 +31,7 @@ body{
     border: 1px solid white;
     color: white;
     border-radius: 10px;
-    margin: 5px;
-    width: inherit;
+    
 }
 
 #food{
@@ -45,5 +44,15 @@ body{
 
 #play{
     background-color: #0B0E29;
+}
+
+.center{
+    display: flex;
+    width: 80%;
+    margin: 0px auto;
+} 
+
+.container{
+    width: 90%;
 }
 
