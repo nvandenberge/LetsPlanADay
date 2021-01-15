@@ -1,59 +1,58 @@
-body{
-    font-family: 'Courier New', Courier, monospace;
-    background-color: #56bda2;
-    color: #0B0E29;
-    padding: 100px;
-    text-align: center;
+body {
+  font-family: "Courier New", Courier, monospace;
+  background-color: #56bda2;
+  color: #0b0e29;
+  padding: 100px;
+  text-align: center;
 }
 
-.materialize-text{
-    color: #0B0E29;
+.materialize-text {
+  color: #0b0e29;
 }
 
-#zipInput{
-    background-color:#DBB23B;
-    border: 1px solid white;
-    border-radius: 5px;
-    width: 280px;
-    text-align: center;
+#zipInput {
+  background-color: #dbb23b;
+  border: 1px solid white;
+  border-radius: 5px;
+  width: 280px;
+  text-align: center;
 }
 
-#zipInput::placeholder{
-    color: #0B0E29;
+#zipInput::placeholder {
+  color: #0b0e29;
 }
 
-#searchBtn{  
-    color: #DBB23B;
-    background-color: #0B0E29;
+#searchBtn {
+  color: #dbb23b;
+  background-color: #0b0e29;
 }
 
-.boxes{
-    border: 1px solid white;
-    color: white;
-    border-radius: 10px;
-    
+.boxes {
+  border: 1px solid white;
+  color: white;
+  border-radius: 10px;
 }
 
-#food{
-    background-color: #DBB23B;
+#food {
+  background-color: #dbb23b;
 }
 
-#event{
-    background-color: #2492A1;
+#event {
+  background-color: #2492a1;
 }
 
-#play{
-    background-color: #0B0E29;
+#play {
+  background-color: #0b0e29;
 }
 
-.center{
-    display: flex;
-    width: 80%;
-    margin: 0px auto;
-} 
+.center {
+  display: flex;
+  width: 80%;
+  margin: 0px auto;
+}
 
-.container{
-    width: 90%;
+.container {
+  width: 90%;
 }
 
 /* Removes the conter from the input box visibility */
@@ -62,4 +61,10 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+#inputError {
+  font-style: italic;
+  font-size: large;
+  color: red;
 }
