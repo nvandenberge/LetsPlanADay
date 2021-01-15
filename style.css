@@ -6,9 +6,13 @@ body{
     text-align: center;
 }
 
-nav{
-   background-color: #56bda2; 
+.footer{
+   position: absolute;
+   left: 0;
+   bottom: 0;
+   width: 100%;
 }
+
 .materialize-textarea{
     color: #0B0E29;
 }
