@@ -2,10 +2,13 @@ body{
     font-family: 'Courier New', Courier, monospace;
     background-color: #56bda2;
     color: #0B0E29;
-    padding: 100px;
+    /* padding: 100px; */
     text-align: center;
 }
 
+nav{
+   background-color: #56bda2; 
+}
 .materialize-textarea{
     color: #0B0E29;
 }
