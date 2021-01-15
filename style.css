@@ -16,6 +16,7 @@ body{
     border-radius: 5px;
     width: 280px;
     text-align: center;
+    resize: none;
 }
 
 #textarea1::placeholder{
