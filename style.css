@@ -6,11 +6,11 @@ body{
     text-align: center;
 }
 
-.materialize-textarea{
+.materialize-text{
     color: #0B0E29;
 }
 
-#textarea1{
+#zipInput{
     background-color:#DBB23B;
     border: 1px solid white;
     border-radius: 5px;
@@ -18,7 +18,7 @@ body{
     text-align: center;
 }
 
-#textarea1::placeholder{
+#zipInput::placeholder{
     color: #0B0E29;
 }
 
@@ -56,3 +56,10 @@ body{
     width: 90%;
 }
 
+/* Removes the conter from the input box visibility */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
