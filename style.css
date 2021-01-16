@@ -40,19 +40,25 @@ body {
 
 #food {
   background-color: #dbb23b;
+  margin-bottom: 10px;
 }
 
 #event {
   background-color: #2492a1;
+  margin-bottom: 10px;
 }
 
-.newFoodBtn {
+img {
+  border-radius: 5px;
+}
+
+.newFoodBtn, .newEventBtn {
   color: #dbb23b;
   background-color: #0b0e29;
   margin: 10px 0 25px 0;
 }
 
-.newFoodBtn:hover {
+.newFoodBtn:hover, .newEventBtn:hover {
   color: #dbb23b;
   background-color: #0b0e29;
   box-shadow: 2px 5px 10px yellow;

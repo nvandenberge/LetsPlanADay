@@ -1,6 +1,6 @@
 $(document).ready(function () {
   function yelpRequest(zipCode) {
-    foodOption(zipCode);
+    foodRequest(zipCode);
     eventRequest(zipCode);
   }
   // Gets the zip code from the URL
@@ -10,7 +10,7 @@ $(document).ready(function () {
 });
 
   // Function that gets Yelp API request & builds UI content
-function foodOption(zipCode) {
+function foodRequest(zipCode) {
   let yelpAPIKey =
     "nfTUVrFeoPDHChVBIUtbNHnP1lRBrqWO50jNjHHoePVDf4Q2IVoCGIld9YgAq-MX9VDeGBNUb0plvpnIFdfuf7X3huELvNrBDN2YjSEKDf3ANCXhx3-gJb9JnvL9X3Yx";
 
@@ -66,7 +66,7 @@ function foodOption(zipCode) {
       $("#foodBtnHolder").append(newFoodButton);
       $(".newFoodBtn").on("click", function () {
         newFoodButton.remove();
-        foodOption(zipCode);
+        foodRequest(zipCode);
       });
     }
   );
@@ -87,7 +87,7 @@ function foodOption(zipCode) {
           $("#eventError").text(
             "Sorry, there are no upcoming events in this area."
           );
-          $("#eventErrorSig").text("Love, COVID-19");
+          $("#eventErrorSig").text("Sincerely, COVID-19");
         }
         // If events are found, run the following
         else {
@@ -104,10 +104,11 @@ function foodOption(zipCode) {
             width: "100%",
             fit: "scale",
           });
-          eventImage.empty();
+          eventImage.remove();
 
           // Event image
           if (eventData?.images[0].url !== undefined || "") {
+            $("#eventImage").empty();
             $("#eventImage").append(eventImage);
           }
           // Event name
@@ -131,6 +132,12 @@ function foodOption(zipCode) {
             $("#eventTickets").text(`Tickets: `);
             $("#eventTickets").append(ticketLink);
           }
+          let newEventButton = $("<button>").addClass("newEventBtn btn waves-effect waves-light").text("New Event Option");
+          $("#eventBtnHolder").append(newEventButton);
+          $(".newEventBtn").on("click", function () {
+            newEventButton.remove();
+            eventRequest(zipCode);
+          });
         }
       },
       error: function (xhr, status, err) {
