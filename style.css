@@ -4,13 +4,16 @@ body {
     color: #0b0e29;
     padding: 100px;
     text-align: center;
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
+    height: 100%;
+    position: relative;
 }
 
 main {
-    flex: 1 0 auto;
+    min-height: 100vh; 
+    overflow: hidden;
+    display: block;
+    position: relative;
+    padding-bottom: 100px; 
 }
 
 .materialize-text {
@@ -88,24 +91,21 @@ img {
 }
 
 .page-footer {
-    position: fixed;
+    position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
     background-color: #0b0e29;
     z-index: 1;
+    
 }
 
 .page-footer a {
     border: 1px solid gray;
 }
 
-
 /* Removes the conter from the input box visibility */
-
-
 /* Chrome, Safari, Edge, Opera */
-
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -124,4 +124,10 @@ input::-webkit-inner-spin-button {
 
 #emailInput {
     max-width: 250px;
+}
+@media only screen and (max-width: 950px){
+
+    body {
+        display: flex;
+    }
 }
