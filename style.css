@@ -46,8 +46,16 @@ body {
   background-color: #2492a1;
 }
 
-#play {
+.newFoodBtn {
+  color: #dbb23b;
   background-color: #0b0e29;
+  margin: 10px 0 25px 0;
+}
+
+.newFoodBtn:hover {
+  color: #dbb23b;
+  background-color: #0b0e29;
+  box-shadow: 2px 5px 10px yellow;
 }
 
 .center {

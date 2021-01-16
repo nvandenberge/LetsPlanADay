@@ -1,63 +1,78 @@
 $(document).ready(function () {
   function yelpRequest(zipCode) {
-    let yelpAPIKey =
-      "nfTUVrFeoPDHChVBIUtbNHnP1lRBrqWO50jNjHHoePVDf4Q2IVoCGIld9YgAq-MX9VDeGBNUb0plvpnIFdfuf7X3huELvNrBDN2YjSEKDf3ANCXhx3-gJb9JnvL9X3Yx";
-
-    // Forced to go through herokuapp proxy since we do not have server setup
-    let yelpREST = axios.create({
-      baseURL: "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3",
-      headers: {
-        Authorization: `Bearer ${yelpAPIKey}`,
-        "Content-type": "application/json",
-      },
-    });
-
-    // Function that builds url for Yelp API request & UI content
-    yelpREST("/businesses/search", { params: { location: zipCode } }).then(
-      ({ data }) => {
-        // Get a random number between 0 and legnth of array
-        let randomRestIndex = Math.floor(
-          Math.random() * data.businesses.length
-        );
-        let restData = data.businesses[randomRestIndex];
-
-        // Creating <img> element and adding image url to src attr.
-        let foodImage = $("<img>").attr({
-          src: restData?.image_url,
-          height: "auto",
-          width: "100%",
-          fit: "scale",
-        });
-        foodImage.empty();
-
-        // Puts full address together
-        let fullRestAddress = restData.location.display_address.join(" | ");
-
-        // Using IF statements to ensure data is available, if not, dont display
-        // Restaurant image
-        if (restData.image_url !== undefined || "") {
-          $("#restImage").append(foodImage);
-        }
-        // Restaurant name
-        $("#restName").text(`Name: ${restData.name}`);
-        // Restaurant type
-        if (restData.categories[0].title !== undefined || "") {
-          $("#restType").text(`Type: ${restData.categories[0]?.title}`);
-        }
-        // Restaurant phone number
-        if (restData.phone !== undefined || "") {
-          $("#restPhone").text(`Phone: ${restData?.phone}`);
-        }
-        // Restaurant address
-        if (restData.location.display_address !== undefined || "") {
-          $("#restAddress").text(`Address: ${fullRestAddress}`);
-        }
-        eventRequest(zipCode);
-      }
-    );
+    foodOption(zipCode);
+    eventRequest(zipCode);
   }
+  // Gets the zip code from the URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const zipCode = urlParams.get("zip");
+  yelpRequest(zipCode);
+});
 
-  // Function that gets TicketMaster API request from  & UI content
+  // Function that gets Yelp API request & builds UI content
+function foodOption(zipCode) {
+  let yelpAPIKey =
+    "nfTUVrFeoPDHChVBIUtbNHnP1lRBrqWO50jNjHHoePVDf4Q2IVoCGIld9YgAq-MX9VDeGBNUb0plvpnIFdfuf7X3huELvNrBDN2YjSEKDf3ANCXhx3-gJb9JnvL9X3Yx";
+
+  // Forced to go through herokuapp proxy since we do not have server setup
+  let yelpREST = axios.create({
+    baseURL: "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3",
+    headers: {
+      Authorization: `Bearer ${yelpAPIKey}`,
+      "Content-type": "application/json",
+    },
+  });
+
+  // Function that builds url for Yelp API request & UI content
+  yelpREST("/businesses/search", { params: { location: zipCode } }).then(
+    ({ data }) => {
+      // Get a random number between 0 and legnth of array
+      let randomRestIndex = Math.floor(Math.random() * data.businesses.length);
+      let restData = data.businesses[randomRestIndex];
+
+      // Creating <img> element and adding image url to src attr.
+      let foodImage = $("<img>").attr({
+        src: restData?.image_url,
+        height: "auto",
+        width: "100%",
+        fit: "scale",
+      });
+      foodImage.remove();
+
+      // Puts full address together
+      let fullRestAddress = restData.location.display_address.join(" | ");
+
+      // Using IF statements to ensure data is available, if not, dont display
+      // Restaurant image
+      if (restData.image_url !== undefined || "") {
+        $("#restImage").empty();
+        $("#restImage").append(foodImage);
+      }
+      // Restaurant name
+      $("#restName").text(`Name: ${restData.name}`);
+      // Restaurant type
+      if (restData.categories[0].title !== undefined || "") {
+        $("#restType").text(`Type: ${restData.categories[0]?.title}`);
+      }
+      // Restaurant phone number
+      if (restData.phone !== undefined || "") {
+        $("#restPhone").text(`Phone: ${restData?.phone}`);
+      }
+      // Restaurant address
+      if (restData.location.display_address !== undefined || "") {
+        $("#restAddress").text(`Address: ${fullRestAddress}`);
+      }
+      let newFoodButton = $("<button>").addClass("newFoodBtn btn waves-effect waves-light").text("New Food Option");
+      $("#foodBtnHolder").append(newFoodButton);
+      $(".newFoodBtn").on("click", function () {
+        newFoodButton.remove();
+        foodOption(zipCode);
+      });
+    }
+  );
+}
+
+  // Function that gets TicketMaster API request & builds UI content
   function eventRequest(zipCode) {
     let eventAPIKey = "Fm5l5yKh5aBTmisz5MDUhqCSxcPtyTWL";
 
@@ -123,8 +138,3 @@ $(document).ready(function () {
       },
     });
   }
-  // Gets the zip code from the URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const zipCode = urlParams.get("zip");
-  yelpRequest(zipCode);
-});
