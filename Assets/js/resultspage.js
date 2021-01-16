@@ -145,3 +145,13 @@ function foodRequest(zipCode) {
       },
     });
   }
+
+  $("#emailBtn").on("click", function () {
+    localStorage.clear();
+    const choicesArr = JSON.parse(localStorage.getItem("choices")) || [];
+    choicesArr.push({
+      food: $("#restName").text(),
+      event: $("#eventName").text()
+    })
+    localStorage.setItem("choices", JSON.stringify(choicesArr));
+  })
