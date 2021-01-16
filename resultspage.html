@@ -1,64 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lets Plan a Day!</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
     <link rel="stylesheet" href="style.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-</head>
+  </head>
 
-<body>
+  <body>
     <main>
-        <div class="container">
-            <div id="choicesHeader">Your Choices!</div>
-            <div class="row">
-                <div class="col s12 m12 l6 xl6">
-                    <div class="boxes" id="food">
-                        <h4>Food</h4>
-                    </div>
-                    <!-- Divs to display restaurant data -->
-                    <div id="restImage"></div>
-                    <div id="restName"></div>
-                    <div id="restType"></div>
-                    <div id="restPhone"></div>
-                    <div id="restAddress"></div>
-                    <div id="foodBtnHolder"></div>
-                </div>
-                <div class="col s12 m12 l6 xl6">
-                    <div class="boxes" id="event">
-                        <h4>Event</h4>
-                    </div>
-                    <!-- Divs to display event data -->
-                    <div id="eventError"></div>
-                    <div id="eventErrorSig"></div>
-                    <div id="eventImage"></div>
-                    <div id="eventName"></div>
-                    <div id="eventDate"></div>
-                    <div id="eventInfo"></div>
-                    <div id="eventTickets"></div>
-                    <div id="eventBtnHolder"></div>
-                </div>
+      <div class="container">
+        <div id="choicesHeader">Your Choices!</div>
+        <div class="row">
+          <div class="col s12 m12 l6 xl6">
+            <div class="boxes" id="food">
+              <h4>Food</h4>
             </div>
+            <!-- Divs to display restaurant data -->
+            <div id="restImage"></div>
+            <div id="restName"></div>
+            <div id="restType"></div>
+            <div id="restPhone"></div>
+            <div id="restAddress"></div>
+            <div id="foodBtnHolder"></div>
+          </div>
+          <div class="col s12 m12 l6 xl6">
+            <div class="boxes" id="event">
+              <h4>Event</h4>
+            </div>
+            <!-- Divs to display event data -->
+            <div id="eventError"></div>
+            <div id="eventErrorSig"></div>
+            <div id="eventImage"></div>
+            <div id="eventName"></div>
+            <div id="eventDate"></div>
+            <div id="eventInfo"></div>
+            <div id="eventTickets"></div>
+            <div id="eventBtnHolder"></div>
+          </div>
         </div>
+      </div>
     </main>
 
     <footer class="page-footer">
-        <div class="container">
-            <a class="waves-effect waves-light btn" id="emailBtn">
-                <i class="material-icons right">email</i>Email my results
-            </a>
-            <a href="index.html" class="waves-effect waves-light btn" id="loopBtn">
-                <i class="small material-icons right">loop</i>Let's try again</a>
-        </div>
+      <div class="container">
+        <a
+          class="waves-effect waves-light btn modal-trigger"
+          href="#modal1"
+          id="emailBtn"
+        >
+          <i class="material-icons right">email</i>Email my results
+        </a>
+        <a href="index.html" class="waves-effect waves-light btn" id="loopBtn">
+          <i class="small material-icons right">loop</i>Let's try again</a
+        >
+      </div>
     </footer>
+    <!-- Modal for emailing results -->
+    <div id="modal1" class="modal modal-fixed-footer">
+      <div class="modal-content">
+        <h4>Email My Choices:</h4>
+        <div><strong>Food </strong><span id="foodChoice"></span></div>
+        <br>
+        <div id="eventChoiceInfo"><strong>Event </strong><span id="eventChoice"></span></div>
+        <br>
+        <form>
+          <input class="materialize-text" placeholder="Enter Email" type="email" id="emailInput"></input>
+          <br>
+          <button class="btn waves-effect waves-light" type="submit" id="sendBtn">Send
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat"
+          >Close</a
+        >
+      </div>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="Assets/js/resultspage.js"></script>
-</body>
-
+  </body>
 </html>

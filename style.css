@@ -117,3 +117,11 @@ input::-webkit-inner-spin-button {
     font-size: large;
     color: red;
 }
+
+#modal1 {
+    max-height: 350px;
+}
+
+#emailInput {
+    max-width: 250px;
+}
