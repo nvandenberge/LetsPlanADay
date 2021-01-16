@@ -126,7 +126,6 @@ input::-webkit-inner-spin-button {
     max-width: 250px;
 }
 @media only screen and (max-width: 950px){
-
     body {
         display: flex;
     }
