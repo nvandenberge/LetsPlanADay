@@ -1,0 +1,132 @@
+body {
+    font-family: "Courier New", Courier, monospace;
+    background-color: #56bda2;
+    color: #0b0e29;
+    padding: 100px;
+    text-align: center;
+    height: 100%;
+    position: relative;
+}
+
+main {
+    min-height: 100vh; 
+    overflow: hidden;
+    display: block;
+    position: relative;
+    padding-bottom: 100px; 
+}
+
+.materialize-text {
+    color: #0b0e29;
+}
+
+#zipInput {
+    background-color: #dbb23b;
+    border: 1px solid white;
+    border-radius: 5px;
+    max-width: 280px;
+    text-align: center;
+}
+
+#zipInput::placeholder {
+    color: #0b0e29;
+}
+
+#searchBtn {
+    color: #dbb23b;
+    background-color: #0b0e29;
+}
+
+#choicesHeader {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+}
+
+.boxes {
+    border: 1px solid white;
+    color: white;
+    border-radius: 10px;
+}
+
+#food {
+    background-color: #dbb23b;
+    margin-bottom: 10px;
+}
+
+#event {
+    background-color: #2492a1;
+    margin-bottom: 10px;
+}
+
+img {
+    border-radius: 5px;
+}
+
+.newFoodBtn,
+.newEventBtn,
+#emailBtn,
+#loopBtn {
+    color: #dbb23b;
+    background-color: #0b0e29;
+    margin: 10px 0 25px 0;
+}
+
+.newFoodBtn:hover,
+.newEventBtn:hover,
+#emailBtn:hover,
+#loopBtn:hover {
+    color: #dbb23b;
+    background-color: #0b0e29;
+    box-shadow: 2px 5px 10px yellow;
+}
+
+.center {
+    display: flex;
+    width: 80%;
+    margin: 0px auto;
+}
+
+.container {
+    width: 90%;
+}
+
+.page-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #0b0e29;
+    z-index: 1;
+    
+}
+
+.page-footer a {
+    border: 1px solid gray;
+}
+
+/* Removes the conter from the input box visibility */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#inputError {
+    font-style: italic;
+    font-size: large;
+    color: red;
+}
+
+#modal1 {
+    max-height: 350px;
+}
+
+#emailInput {
+    max-width: 250px;
+}
+@media only screen and (max-width: 950px){
+    body {
+        display: flex;
+    }
+}
