@@ -2,6 +2,7 @@ $(document).ready(function () {
   function yelpRequest(zipCode) {
     foodRequest(zipCode);
     eventRequest(zipCode);
+    $(".modal").modal();
   }
   // Gets the zip code from the URL
   const urlParams = new URLSearchParams(window.location.search);
@@ -9,7 +10,7 @@ $(document).ready(function () {
   yelpRequest(zipCode);
 });
 
-  // Function that gets Yelp API request & builds UI content
+// Function that gets Yelp API request & builds UI content
 function foodRequest(zipCode) {
   let yelpAPIKey =
     "nfTUVrFeoPDHChVBIUtbNHnP1lRBrqWO50jNjHHoePVDf4Q2IVoCGIld9YgAq-MX9VDeGBNUb0plvpnIFdfuf7X3huELvNrBDN2YjSEKDf3ANCXhx3-gJb9JnvL9X3Yx";
@@ -62,7 +63,9 @@ function foodRequest(zipCode) {
       if (restData.location.display_address !== undefined || "") {
         $("#restAddress").text(`Address: ${fullRestAddress}`);
       }
-      let newFoodButton = $("<button>").addClass("newFoodBtn btn waves-effect waves-light").text("New Food Option");
+      let newFoodButton = $("<button>")
+        .addClass("newFoodBtn btn waves-effect waves-light")
+        .text("New Food Option");
       $("#foodBtnHolder").append(newFoodButton);
       $(".newFoodBtn").on("click", function () {
         newFoodButton.remove();
@@ -72,76 +75,95 @@ function foodRequest(zipCode) {
   );
 }
 
-  // Function that gets TicketMaster API request & builds UI content
-  function eventRequest(zipCode) {
-    let eventAPIKey = "Fm5l5yKh5aBTmisz5MDUhqCSxcPtyTWL";
+// Function that gets TicketMaster API request & builds UI content
+function eventRequest(zipCode) {
+  let eventAPIKey = "Fm5l5yKh5aBTmisz5MDUhqCSxcPtyTWL";
 
-    $.ajax({
-      type: "GET",
-      url: `https://cors-anywhere.herokuapp.com/https://app.ticketmaster.com/discovery/v2/events.json?apikey=${eventAPIKey}&postalCode=${zipCode}`,
-      async: true,
-      dataType: "json",
-      success: function (response) {
-        // Error handling if no events are returned.
-        if (response?._embedded?.events?.length === undefined) {
-          $("#eventError").text(
-            "Sorry, there are no upcoming events in this area."
-          );
-          $("#eventErrorSig").text("Sincerely, COVID-19");
+  $.ajax({
+    type: "GET",
+    url: `https://cors-anywhere.herokuapp.com/https://app.ticketmaster.com/discovery/v2/events.json?apikey=${eventAPIKey}&postalCode=${zipCode}`,
+    async: true,
+    dataType: "json",
+    success: function (response) {
+      // Error handling if no events are returned.
+      if (response?._embedded?.events?.length === undefined) {
+        $("#eventError").text(
+          "Sorry, there are no upcoming events in this area."
+        );
+        $("#eventErrorSig").text("Sincerely, COVID-19");
+      }
+      // If events are found, run the following
+      else {
+        // Get a random number between 0 and legnth of array
+        let randomEventIndex = Math.floor(
+          Math.random() * response._embedded.events.length
+        );
+        let eventData = response._embedded.events[randomEventIndex];
+
+        // Creating <img> element and adding image url to src attr.
+        let eventImage = $("<img>").attr({
+          src: eventData?.images[0].url,
+          height: "auto",
+          width: "100%",
+          fit: "scale",
+        });
+        eventImage.remove();
+
+        // Event image
+        if (eventData?.images[0].url !== undefined || "") {
+          $("#eventImage").empty();
+          $("#eventImage").append(eventImage);
         }
-        // If events are found, run the following
-        else {
-          // Get a random number between 0 and legnth of array
-          let randomEventIndex = Math.floor(
-            Math.random() * response._embedded.events.length
+        // Event name
+        $("#eventName").text(`Name: ${eventData.name}`);
+        // Convert date format to MM-DD-YYYY using moment.js
+        if (eventData.dates.start.localDate !== undefined || "") {
+          $("#eventDate").text(
+            `Date: ${moment(eventData?.dates?.start?.localDate).format("L")}`
           );
-          let eventData = response._embedded.events[randomEventIndex];
-
-          // Creating <img> element and adding image url to src attr.
-          let eventImage = $("<img>").attr({
-            src: eventData?.images[0].url,
-            height: "auto",
-            width: "100%",
-            fit: "scale",
-          });
-          eventImage.remove();
-
-          // Event image
-          if (eventData?.images[0].url !== undefined || "") {
-            $("#eventImage").empty();
-            $("#eventImage").append(eventImage);
-          }
-          // Event name
-          $("#eventName").text(`Name: ${eventData.name}`);
-          // Convert date format to MM-DD-YYYY using moment.js
-          if (eventData.dates.start.localDate !== undefined || "") {
-            $("#eventDate").text(
-              `Date: ${moment(eventData?.dates?.start?.localDate).format("L")}`
-            );
-          }
-          // Event description
-          if (eventData.info !== undefined || "") {
-            $("#eventInfo").text(`Description: ${eventData?.info}`);
-          }
-          // Link to event
-          if (eventData.url !== undefined || "") {
-            // Creating anchor element to hold ticket link
-            let ticketLink = $("<a>")
-              .text("Get Tickets")
-              .attr("href", eventData.url);
-            $("#eventTickets").text(`Tickets: `);
-            $("#eventTickets").append(ticketLink);
-          }
-          let newEventButton = $("<button>").addClass("newEventBtn btn waves-effect waves-light").text("New Event Option");
-          $("#eventBtnHolder").append(newEventButton);
-          $(".newEventBtn").on("click", function () {
-            newEventButton.remove();
-            eventRequest(zipCode);
-          });
         }
-      },
-      error: function (xhr, status, err) {
-        console.log("ERROR == ", xhr.status);
-      },
-    });
+        // Event description
+        if (eventData.info !== undefined || "") {
+          $("#eventInfo").text(`Description: ${eventData?.info}`);
+        }
+        // Link to event
+        if (eventData.url !== undefined || "") {
+          // Creating anchor element to hold ticket link
+          let ticketLink = $("<a>")
+            .text("Get Tickets")
+            .attr("href", eventData.url);
+          $("#eventTickets").text(`Tickets: `);
+          $("#eventTickets").append(ticketLink);
+        }
+        let newEventButton = $("<button>")
+          .addClass("newEventBtn btn waves-effect waves-light")
+          .text("New Event Option");
+        $("#eventBtnHolder").append(newEventButton);
+        $(".newEventBtn").on("click", function () {
+          newEventButton.remove();
+          eventRequest(zipCode);
+        });
+      }
+    },
+    error: function (xhr, status, err) {
+      console.log("ERROR == ", xhr.status);
+    },
+  });
+}
+
+$("#emailBtn").on("click", function () {
+  localStorage.clear();
+  let choicesArr = JSON.parse(localStorage.getItem("choices")) || [];
+  choicesArr.push({
+    food: $("#restName").text(),
+    event: $("#eventName").text(),
+  });
+  localStorage.setItem("choices", JSON.stringify(choicesArr));
+  choicesArr = JSON.parse(localStorage.getItem("choices"));
+  $("#foodChoice").text(choicesArr[0].food);
+  if (choicesArr[0].event === "") {
+    $("#eventChoiceInfo").text("No events available");
+  } else {
+    $("#eventChoice").text(choicesArr[0].event);
   }
+});
