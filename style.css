@@ -27,6 +27,11 @@ body {
   background-color: #0b0e29;
 }
 
+#choicesHeader {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+}
+
 .boxes {
   border: 1px solid white;
   color: white;
