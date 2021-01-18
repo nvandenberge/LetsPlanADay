@@ -66,9 +66,9 @@ function foodRequest(zipCode) {
       let newFoodButton = $("<button>")
         .addClass("newFoodBtn btn waves-effect waves-light")
         .text("New Food Option");
-      $("#foodBtnHolder").append(newFoodButton);
+      $("#foodBtnHolder").html(newFoodButton);
       $(".newFoodBtn").on("click", function () {
-        newFoodButton.remove();
+        newFoodButton.prop("disabled", true);
         foodRequest(zipCode);
       });
     }
@@ -138,9 +138,9 @@ function eventRequest(zipCode) {
         let newEventButton = $("<button>")
           .addClass("newEventBtn btn waves-effect waves-light")
           .text("New Event Option");
-        $("#eventBtnHolder").append(newEventButton);
+        $("#eventBtnHolder").html(newEventButton);
         $(".newEventBtn").on("click", function () {
-          newEventButton.remove();
+          newEventButton.prop("disabled", true);;
           eventRequest(zipCode);
         });
       }
